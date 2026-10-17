@@ -14,3 +14,6 @@ The patch defines the following ranges for AC power and, where specified, batter
 | NVIDIA TGP | 80–115 W | Not defined by this entry |
 
 These values define the ranges available through the Armoury controls. They do not mean that the CPU or GPU continuously operates at the maximum value.
+
+
+## NOTE TO SELF. CHECK NOT DEFINED.
