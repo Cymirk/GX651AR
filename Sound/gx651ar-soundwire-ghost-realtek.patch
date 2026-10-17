@@ -1,0 +1,30 @@
+From 91924178fb2a7aee86b2e04e90353cdf99fa2deb Mon Sep 17 00:00:00 2001
+From: Cymirk <Cymirk@icloud.com>
+Date: Sat, 26 Sep 2026 21:19:09 -0700
+Subject: [PATCH] soundwire: dmi-quirks: disable ghost Realtek on GX651AR
+
+---
+ drivers/soundwire/dmi-quirks.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/soundwire/dmi-quirks.c b/drivers/soundwire/dmi-quirks.c
+index 32a46a2d90f7..31bb51bf6952 100644
+--- a/drivers/soundwire/dmi-quirks.c
++++ b/drivers/soundwire/dmi-quirks.c
+@@ -185,6 +185,13 @@ static const struct dmi_system_id adr_remap_quirk_table[] = {
+ 		},
+ 		.driver_data = (void *)ghost_realtek,
+ 	},
++        {
++                .matches = {
++                        DMI_MATCH(DMI_SYS_VENDOR, "ASUS"),
++                        DMI_MATCH(DMI_BOARD_NAME, "GX651AR"),
++                },
++                .driver_data = (void *)ghost_realtek,
++        },
+ 	{
+ 		.matches = {
+ 			DMI_MATCH(DMI_SYS_VENDOR, "LENOVO"),
+-- 
+2.56.0
+
