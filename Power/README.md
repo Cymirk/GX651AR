@@ -16,4 +16,4 @@ The patch defines the following ranges for AC power and, where specified, batter
 These values define the ranges available through the Armoury controls. They do not mean that the CPU or GPU continuously operates at the maximum value.
 
 
-## NOTE TO SELF. CHECK NOT DEFINED.
+## Patch sent upstream https://lists.openwall.net/linux-kernel/2026/09/18/2887?
