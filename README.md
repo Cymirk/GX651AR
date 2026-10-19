@@ -7,5 +7,4 @@ Following the OGC path of kernel building.
 ##As of 7.2.11 
 offical kernel  still needs all patches
 
-OGC kernel still need audio patch
-also keyboard brightness buttons needs patched.. on both wired and wireless
+ogc kernel needs keyboard brightness buttons needs patched.. on both wired and wireless
