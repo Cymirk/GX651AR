@@ -3,3 +3,9 @@
 This is my attempt to make a Linux kernel with ogc and my own patches and keep it fully documented.
 Some of these patches have already been sent upstream and approved. (Check README.md for exact info)
 Following the OGC path of kernel building.
+
+##As of 7.2.11 
+offical kernel  still needs all patches
+
+OGC kernel still need audio patch
+also keyboard brightness buttons needs patched.. on both wired and wireless
