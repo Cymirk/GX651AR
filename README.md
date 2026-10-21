@@ -1,10 +1,6 @@
-# Custom Linux Kernel
+# Linux Kernel 7.2.11 Fedora 44
+# Bios Version 310
+This is my attempt to record linux patches and keep it fully documented.
+Some of these patches have already been sent upstream and approved. When upstream reaches Fedora 44, patches will be removed to avoid confusion. (Check README.md for exact info)
 
-This is my attempt to make a Linux kernel with ogc and my own patches and keep it fully documented.
-Some of these patches have already been sent upstream and approved. (Check README.md for exact info)
-Following the OGC path of kernel building.
-
-##As of 7.2.11 
-offical kernel  still needs all patches
-
-ogc kernel needs keyboard brightness buttons needs patched.. on both wired and wireless
+ogc kernel needs keyboard brightness buttons needs patched on both wired and wireless
