@@ -19,3 +19,21 @@ Found that the firmware does two things when the keyboard is attached and detach
 As I use Fedora 44 KDE Plasma I and other ASUS dual screen laptop users choose to disable the orientation prompt as the kde interface can already control orientation automatically.
 
 https://gist.github.com/mfenniak/f313f9a94fbcfa8fb52f978f29393ab1
+
+
+
+commit text rough draft
+
+Ignore keyboard attach/detach event on GX651AR
+
+The ASUS ROG Zephyrus Duo GX651AR has a detachable keyboard. Attaching or
+detaching it generates WMI event 0x5e, which the keymap reports as
+KEY_WLAN and Wi-Fi gets toggled. This command is orignally made to pop up on screen what orientation thats going to be used.
+
+KDE Plasma has Automatic orientation that already does this and some pending patches for finetuning. 
+
+The existing Zenbook Duo keyboard quirk ignores 0x5d, 0x5e and 0x5f, but
+those other codes are used for real keys on some ASUS models. This adds a
+narrower quirk that ignores only 0x5e on this model.
+
+Signed-off-by: Cymirk <Cymirk@icloud.com>
