@@ -1,0 +1,87 @@
+From 2918e1ebbdf247cf2ca0f8d1a74ca3a8c515b580 Mon Sep 17 00:00:00 2001
+From: Cymirk <Cymirk@icloud.com>
+Date: Mon, 26 Oct 2026 11:44:06 -0700
+Subject: [PATCH] platform/x86: asus-nb-wmi: Ignore GX651AR event 0x5e
+
+The ASUS ROG Zephyrus Duo GX651AR reports WMI event 0x5e when
+the detachable keyboard is attached or detached. The ASUS WMI
+driver handles this event alongside wireless-console events,
+where it can be interpreted as a wireless key event.
+
+Add a model-specific quirk to ignore event 0x5e on the GX651AR.
+Keep handling of events 0x5d and 0x5f unchanged and leave other
+ASUS models unaffected.
+
+Tested on ASUS ROG Zephyrus Duo GX651AR, Fedora 44, kernel
+7.2.11-200.fc44.x86_64, using a temporary module built from the
+v7.2.11 driver source with the KEYBOARD_KEY_5e hwdb override
+disabled. Keyboard detach/reattach and typing continued to work;
+Wi-Fi remained enabled, and evtest no longer reported scan code
+0x5e.
+
+Signed-off-by: Cymirk <Cymirk@icloud.com>
+---
+ drivers/platform/x86/asus-nb-wmi.c | 18 +++++++++++++++++-
+ drivers/platform/x86/asus-wmi.h    |  3 +++
+ 2 files changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/platform/x86/asus-nb-wmi.c b/drivers/platform/x86/asus-nb-wmi.c
+index aeb461b16..c2e7328b9 100644
+--- a/drivers/platform/x86/asus-nb-wmi.c
++++ b/drivers/platform/x86/asus-nb-wmi.c
+@@ -150,6 +150,10 @@ static struct quirk_entry quirk_asus_zenbook_duo_kbd = {
+ 	.key_wlan_event = ASUS_WMI_KEY_IGNORE,
+ };
+ 
++static struct quirk_entry quirk_asus_gx651ar = {
++	.ignore_wlan_enable_event = true,
++};
++
+ static struct quirk_entry quirk_asus_z13 = {
+ 	.key_wlan_event = ASUS_WMI_KEY_ARMOURY,
+ 	.tablet_switch_mode = asus_wmi_kbd_dock_devid,
+@@ -562,6 +566,15 @@ static const struct dmi_system_id asus_quirks[] = {
+ 		},
+ 		.driver_data = &quirk_asus_z13,
+ 	},
++	{
++		.callback = dmi_matched,
++		.ident = "ASUS ROG Zephyrus Duo GX651AR",
++		.matches = {
++			DMI_MATCH(DMI_SYS_VENDOR, "ASUS"),
++			DMI_MATCH(DMI_PRODUCT_NAME, "ROG Zephyrus Duo GX651AR"),
++		},
++		.driver_data = &quirk_asus_gx651ar,
++	},
+ 	{},
+ };
+ 
+@@ -687,7 +700,10 @@ static void asus_nb_wmi_key_filter(struct asus_wmi_driver *asus_wmi, int *code,
+ 	case 0x5D: /* Wireless console Toggle */
+ 	case 0x5E: /* Wireless console Enable / Keyboard Attach, Detach */
+ 	case 0x5F: /* Wireless console Disable / Special Key */
+-		if (quirks->key_wlan_event)
++		/* The GX651AR reports event 0x5e on keyboard attach/detach. */
++		if (*code == 0x5E && quirks->ignore_wlan_enable_event)
++			*code = ASUS_WMI_KEY_IGNORE;
++		else if (quirks->key_wlan_event)
+ 			*code = quirks->key_wlan_event;
+ 		break;
+ 	}
+diff --git a/drivers/platform/x86/asus-wmi.h b/drivers/platform/x86/asus-wmi.h
+index 5cd4392b9..b2d91e373 100644
+--- a/drivers/platform/x86/asus-wmi.h
++++ b/drivers/platform/x86/asus-wmi.h
+@@ -52,6 +52,9 @@ struct quirk_entry {
+ 	 */
+ 	int no_display_toggle;
+ 	u32 xusb2pr;
++
++	/* Ignore event 0x5e when it represents keyboard attach/detach. */
++	bool ignore_wlan_enable_event;
+ };
+ 
+ struct asus_wmi_driver {
+-- 
+2.56.0
+
