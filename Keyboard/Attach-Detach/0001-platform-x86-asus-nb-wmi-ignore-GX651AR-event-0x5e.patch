@@ -1,7 +1,4 @@
-From 2918e1ebbdf247cf2ca0f8d1a74ca3a8c515b580 Mon Sep 17 00:00:00 2001
-From: Cymirk <Cymirk@icloud.com>
-Date: Mon, 26 Oct 2026 11:44:06 -0700
-Subject: [PATCH] platform/x86: asus-nb-wmi: Ignore GX651AR event 0x5e
+[PATCH] platform/x86: asus-nb-wmi: Ignore GX651AR event 0x5e
 
 The ASUS ROG Zephyrus Duo GX651AR reports WMI event 0x5e when
 the detachable keyboard is attached or detached. The ASUS WMI
