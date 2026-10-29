@@ -17,4 +17,8 @@ Found that the firmware does two things when the keyboard is attached and detach
 
 As I use Fedora 44 KDE Plasma I and other ASUS dual screen laptop users choose to disable the orientation prompt as the kde interface can already control orientation automatically.
 
-https://gist.github.com/mfenniak/f313f9a94fbcfa8fb52f978f29393ab1
+Upstream info:
+Sent in 10/28/26
+
+OGC:   https://github.com/OpenGamingCollective/linux-unstable/pull/25
+Main Linux Kernel:  https://patchwork.kernel.org/series/1195095/
