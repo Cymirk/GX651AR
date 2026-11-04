@@ -1,8 +1,9 @@
-# Linux Kernel 7.2.13 Fedora 44
+# Linux Kernel 7.2.15 Fedora 45
 # Bios Version 310
-This is my attempt to record linux patches and keep it fully documented.
-Some of these patches have already been sent upstream and approved. When upstream reaches Fedora 44, patches will be removed to avoid confusion. (Check README.md for exact info)
+Record linux patches and keep it fully documented.
+Some of these patches have already been sent upstream and approved. When upstream reaches Fedora 45, patches will be removed to avoid confusion. (Check README.md for exact info)
 
-ogc kernel needs keyboard brightness buttons needs patched on both wired and wireless.
+ogc kernel fixes keyboard delays
+keyboard brightness and other vendor buttons needs GHOUL's patch for both wired and wireless.
 
 ## Many thanks to the OGC community for all the help!
