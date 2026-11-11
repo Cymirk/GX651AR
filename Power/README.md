@@ -16,4 +16,7 @@ The patch defines the following ranges for AC power and, where specified, batter
 These values define the ranges available through the Armoury controls. They do not mean that the CPU or GPU continuously operates at the maximum value.
 
 
-## Patch sent upstream https://lists.openwall.net/linux-kernel/2026/09/18/2887?
+## Patch sent upstream https://lists.openwall.net/linux-kernel/2026/09/18/2887
+
+Patch approved for 7.4 rc1
+https://github.com/torvalds/linux/blob/v7.4-rc1/drivers/platform/x86/asus-armoury.h#L2131-L2157
