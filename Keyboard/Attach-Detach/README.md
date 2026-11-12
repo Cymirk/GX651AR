@@ -20,5 +20,4 @@ As I use Fedora 44 KDE Plasma I and other ASUS dual screen laptop users choose t
 Upstream info:
 Sent in 10/28/26
 
-OGC:   https://github.com/OpenGamingCollective/linux-unstable/pull/25
 Main Linux Kernel:  https://patchwork.kernel.org/series/1195095/
